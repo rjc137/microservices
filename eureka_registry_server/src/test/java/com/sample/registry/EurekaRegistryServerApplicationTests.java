@@ -1,10 +1,10 @@
-package com.sample.api.gateway;
+package com.sample.registry;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class IdentityAccessManagementService1ApplicationTests {
+class EurekaRegistryServerApplicationTests {
 
 	@Test
 	void contextLoads() {

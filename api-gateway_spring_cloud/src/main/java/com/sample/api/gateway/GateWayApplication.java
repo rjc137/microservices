@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class IdentityAccessManagementService1Application {
+public class GateWayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(IdentityAccessManagementService1Application.class, args);
+		SpringApplication.run(GateWayApplication.class, args);
 	}
 
 }

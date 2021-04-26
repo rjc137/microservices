@@ -18,6 +18,7 @@
 		<java.version>15</java.version>
 		<jjwt.version>0.9.1</jjwt.version>
 		<springfox.version>3.0.0</springfox.version>
+		<spring-cloud.version>2020.0.2</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -46,9 +47,8 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.5.7</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -60,7 +60,7 @@
 			<artifactId>springdoc-openapi-data-rest</artifactId>
 			<version>1.5.7</version>
 		</dependency>
-		
+
 		<!--<dependency> <groupId>org.springdoc</groupId> <artifactId>springdoc-openapi-webflux-ui</artifactId> 
 			<version>1.5.2</version> </dependency> -->
 		<dependency>
@@ -73,12 +73,23 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 		</dependency>
 	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<build>
 		<plugins>
 			<plugin>
