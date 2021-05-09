@@ -8,12 +8,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
+import javax.persistence.ForeignKey;
 import javax.validation.constraints.Email;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +27,7 @@ import lombok.ToString;
 
 @Entity(name = "Message")
 @Table(name = "messages", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "id" }, name = "emessenger_db_message_email_unique") })
+		@UniqueConstraint(columnNames = { "id" }, name = "emessenger_db_message_email_uk") })
 @Getter
 @Setter
 @ToString
@@ -50,6 +52,7 @@ public class Message {
 	private String content;
 
 	@ManyToOne(fetch = LAZY, targetEntity = Topic.class, cascade = PERSIST, optional = true)
+	@JoinColumn(foreignKey = @ForeignKey(name = "messages_topic_id_fk"))
 	private Topic topic;
 
 	@Lob

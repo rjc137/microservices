@@ -16,7 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
+import javax.persistence.ForeignKey;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -45,10 +47,11 @@ public class Topic {
 	private String name;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinTable(name = "topic_subscribers", joinColumns = @JoinColumn(name = "topic_id", foreignKey = @ForeignKey(name = "topic_subscribers_topic_id_fk")), inverseJoinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "topic_subscribers_user_id_fk")))
 	private List<User> subscribers = new ArrayList<>();
 
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "topic_messages", joinColumns = @JoinColumn(name = "topic_id"), inverseJoinColumns = @JoinColumn(name = "message_entity_id"))
+	@JoinTable(name = "topic_messages", uniqueConstraints = {@UniqueConstraint(columnNames = "message_id", name = "topic_messages_message_id_uk")}, joinColumns = @JoinColumn(name = "topic_id", foreignKey = @ForeignKey(name = "topic_messages_topic_id_fk")), inverseJoinColumns = @JoinColumn(name = "message_id", foreignKey = @ForeignKey(name = "topic_messages_message_id_fk")))
 	private List<Message> messages = new ArrayList<>();
 
 	@Version
